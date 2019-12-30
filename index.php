@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php
 <html>
 	<head>
 		<title>HACKandTOSS Example Page</title>
@@ -8,3 +8,4 @@
 		<p>Paragraph to add later</p>
 	</body>
 </html>
+?>
