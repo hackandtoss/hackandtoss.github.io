@@ -137,9 +137,6 @@
                     </ul>
                 </div>
 
-                <div class="text-center">
-                    <button id="downloadBtn" class="btn btn-primary btn-download"><i class="fas fa-download"></i> Download as PDF</button>
-                </div>
             </div>
         </div>
     </div>
@@ -148,21 +145,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- html2pdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script>
-        $(document).ready(function() {
-            $('#downloadBtn').click(function() {
-                const element = document.getElementById('resume');
-                const opt = {
-                    margin:       1,
-                    filename:     'John_Chris_Johnson_Resume.pdf',
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { scale: 2 },
-                    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-                };
-                html2pdf().from(element).set(opt).save();
-            });
-        });
-    </script>
+    
 </body>
 </html>
