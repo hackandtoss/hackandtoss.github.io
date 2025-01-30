@@ -2,12 +2,12 @@
 body {
     transition: background-color 0.3s ease, color 0.3s ease;
     background-color: #ffffff;
-    color: #212529;
+    color: #353b42;
 }
 
 /* Dark Mode Overrides */
 .dark-mode {
-    background-color: #121212;
+    background-color: #353b42;
     color: #ffffff;
 }
 
