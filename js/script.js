@@ -18,6 +18,10 @@ $(document).ready(function () {
     function enableDarkMode() {
         $("body").addClass("dark-mode");
         $(".navbar").removeClass("bg-light navbar-light").addClass("bg-dark navbar-dark");
+        $(".card").removeClass("bg-light").addClass("bg-dark text-light");
+        $(".accordion-item").removeClass("bg-light").addClass("bg-dark text-light");
+        $(".list-group-item").addClass("dark-mode");
+        $(".btn-dark").removeClass("btn-dark").addClass("btn-light");
         $(".sun-icon").css("opacity", "0");
         $(".moon-icon").css("opacity", "1");
         $(".slider:before").css("transform", "translateX(32px)");
@@ -28,6 +32,10 @@ $(document).ready(function () {
     function disableDarkMode() {
         $("body").removeClass("dark-mode");
         $(".navbar").removeClass("bg-dark navbar-dark").addClass("bg-light navbar-light");
+        $(".card").removeClass("bg-dark text-light").addClass("bg-light");
+        $(".accordion-item").removeClass("bg-dark text-light").addClass("bg-light");
+        $(".list-group-item").removeClass("dark-mode");
+        $(".btn-light").removeClass("btn-light").addClass("btn-dark");
         $(".sun-icon").css("opacity", "1");
         $(".moon-icon").css("opacity", "0");
         $(".slider:before").css("transform", "translateX(0)");
