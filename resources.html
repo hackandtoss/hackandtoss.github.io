@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hackandtoss - Resources</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto" href="index.html">hackandtoss</a>
+
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="modeToggle">
+                    <span class="slider">
+                        <i class="fas fa-sun theme-icon sun-icon"></i>
+                        <i class="fas fa-moon theme-icon moon-icon"></i>
+                    </span>
+                </label>
+                <span id="modeText">Enable Dark Mode</span>
+            </div>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+    <h1 class="display-1 text-center mb-4">Resources</h1>
+    
+    <div class="row">
+        <!-- Cybersecurity & OSINT -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">Cybersecurity & OSINT</div>
+                <div class="card-body">
+                    <p>Essential tools for Open Source Intelligence (OSINT) and cybersecurity research.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="https://www.shodan.io/" target="_blank">Shodan</a> - Search engine for internet-connected devices.</li>
+                        <li class="list-group-item"><a href="https://censys.io/" target="_blank">Censys</a> - Search engine for discovering internet assets.</li>
+                        <li class="list-group-item"><a href="https://haveibeenpwned.com/" target="_blank">Have I Been Pwned</a> - Check for data breaches.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Penetration Testing -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">Penetration Testing & Exploitation</div>
+                <div class="card-body">
+                    <p>Tools for security testing, ethical hacking, and vulnerability research.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="https://www.kali.org/" target="_blank">Kali Linux</a> - Popular OS for penetration testing.</li>
+                        <li class="list-group-item"><a href="https://www.metasploit.com/" target="_blank">Metasploit Framework</a> - Exploitation framework.</li>
+                        <li class="list-group-item"><a href="https://www.exploit-db.com/" target="_blank">Exploit Database</a> - Repository of exploits.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Operating Systems & Security Textbooks -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">Computer Science & Security Textbooks</div>
+                <div class="card-body">
+                    <p>Free textbooks on Computer Science and computer security fundamentals.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="https://pages.cs.wisc.edu/~remzi/OSTEP/" target="_blank">OSTEP</a> - Free operating systems textbook.</li>
+                        <li class="list-group-item"><a href="https://textbook.cs161.org/" target="_blank">CS161 Security Textbook</a> - Learn computer security principles.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cybersecurity & Cryptography Tools -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">Cybersecurity & Cryptography Tools</div>
+                <div class="card-body">
+                    <p>Tools for encryption, decryption, and cybersecurity analysis.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="https://gchq.github.io/CyberChef/" target="_blank">CyberChef</a> - Encryption, encoding, and data analysis.</li>
+                        <li class="list-group-item"><a href="https://hashes.com/en/decrypt/hash" target="_blank">Hashes.com</a> - Online hash decryption tool.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firmware & Reverse Engineering -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">Firmware & Flipper Zero</div>
+                <div class="card-body">
+                    <p>Firmware and Flipper Zero Repos</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="https://momentum-fw.dev/" target="_blank">Momentum Firmware</a> - Firmware for Flipper Zero</li>
+                        <li class="list-group-item"><a href="https://fzeeflasher.github.io/" target="_blank">FZEE Flasher</a> - ESP Web Flasher</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Digital Forensics -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">Digital Forensics & Reverse Engineering</div>
+                <div class="card-body">
+                    <p>Tools for analyzing, recovering, and investigating digital evidence.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="https://www.autopsy.com/" target="_blank">Autopsy</a> - Digital forensics platform.</li>
+                        <li class="list-group-item"><a href="https://hex-rays.com/ida-free/" target="_blank">IDA Freeware</a> - Interactive disassembler.</li>
+                        <li class="list-group-item"><a href="https://ghidra-sre.org/" target="_blank">Ghidra</a> - NSA's reverse engineering tool.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programming & Scripting -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">Programming & Scripting</div>
+                <div class="card-body">
+                    <p>Useful resources for cybersecurity-focused scripting and automation.</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="https://github.com/gangstanthony/python-for-cybersecurity" target="_blank">Python Security Libraries</a> - Collection of security libraries.</li>
+                        <li class="list-group-item"><a href="https://nmap.org/nsedoc/" target="_blank">Nmap Scripting Engine</a> - Automate network scanning.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> 
+
+    <!-- Footer with Contact Info -->
+    <footer class="text-center mt-5 py-4">
+        <section id="contact">
+            <h2><i class="fas fa-envelope"></i> Contact</h2>
+            <p><i class="fas fa-envelope"></i> Email: <a
+                    href="mailto:jobs.purge002@passinbox.com">jobs.purge002@passinbox.com</a></p>
+            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/john-johnson-77b15247"
+                    target="_blank">LinkedIn Profile</a></p>
+            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/hackandtoss" target="_blank">GitHub
+                    Profile</a></p>
+        </section>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
