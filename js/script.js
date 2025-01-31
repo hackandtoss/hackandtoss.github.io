@@ -43,7 +43,7 @@ $(document).ready(function () {
         localStorage.setItem("theme", "light");
     }
 
-    const roles = ["Cybersecurity Enthusiast", "Software Developer", "Open Source Contributor", "Bug Bounty Hunter"];
+    const roles = ["Cybersecurity Enthusiast", "Software Developer", "Data Scientist", "Bug Bounty Hunter"];
     let index = 0;
     function changeText() {
         $('#changing-text').fadeOut(400, function () {
