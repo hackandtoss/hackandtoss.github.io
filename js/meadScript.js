@@ -18,11 +18,17 @@ class Stopwatch {
     }
   
     stop() {
-      if (this.running) {
-        clearInterval(this.interval);
-        this.running = false;
-        this.totalMilliseconds = Date.now() - this.startTime;
-      }
+        if (this.running) {
+            clearInterval(this.interval);
+            this.running = false;
+            this.totalMilliseconds = Date.now() - this.startTime;
+
+            // Record final lap if there's unrecorded time
+            const elapsedSinceLastLap = Date.now() - this.currentLapStart;
+            if (elapsedSinceLastLap > 0) {
+                this.lap();
+            }
+        }
     }
   
     reset() {
@@ -144,8 +150,9 @@ class Stopwatch {
     });
   
     $('#stop').click(function() {
-      stopwatch.stop();
-      $('#startStop').html('<i class="fas fa-play"></i> Start');
+        stopwatch.stop();
+        $('#startStop').html('<i class="fas fa-play"></i> Start');
+        $('#lap').prop('disabled', true);
     });
   
     $('#lap').click(() => stopwatch.lap());
