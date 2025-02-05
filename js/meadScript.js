@@ -72,7 +72,7 @@ class Stopwatch {
       }
   
       // Update bubble interval display
-      $('#bubble-interval').text(`Current Bubble Interval: ${this.formatTime(lapTime)}`);
+      $('#bubble-interval').text(`Last Bubble Interval: ${this.formatTime(lapTime)}`);
   
       // Update average lap time (computed only from recorded laps)
       const totalLapTime = this.laps.reduce((a, b) => a + b, 0);
@@ -176,7 +176,7 @@ class Stopwatch {
   
       doc.autoTable({
         startY: 25,
-        head: [['Time Between', 'Bubbles', 'Strength', 'Notes']],
+        head: [['Time', 'Bubbles', 'Strength', 'Notes']],
         body: rows
       });
   
