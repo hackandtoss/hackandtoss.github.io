@@ -76,8 +76,10 @@ class Stopwatch {
   
       // Update average lap time (computed only from recorded laps)
       const totalLapTime = this.laps.reduce((a, b) => a + b, 0);
-      const avgLapTime = totalLapTime / this.laps.length;
+      // Get average lap time (computed only from recorded laps) rounded to the nearest millisecond
+      const avgLapTime = Math.round(totalLapTime / this.laps.length);
       $('#average-time').text(`Average Lap: ${this.formatTime(avgLapTime)}`);
+     
     }
   
     update() {
@@ -87,8 +89,7 @@ class Stopwatch {
       // Update current lap display using new format
       const currentLapTime = Date.now() - this.currentLapStart;
       $('#current-lap').text(`Current Lap: ${this.formatTime(currentLapTime)}`);
-  
-      // Ensure stopwatch text uses dark mode color if applicable
+
       this.updateTextColor();
     }
   
