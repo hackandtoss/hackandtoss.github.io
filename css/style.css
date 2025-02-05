@@ -112,6 +112,20 @@ input:checked + .slider .fa-moon {
     font-weight: bold;
 }
 
+th.lap-count, td.lap-count {
+      width: 10%;
+      text-align: center;
+}
+th.time-between,td.time-between {
+    width: 30%;
+}
+th.bubbles, td.bubbles {
+    width: 30%;
+}
+th.strength, td.strength {
+    width: 30%;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 991px) {
     .theme-toggle {

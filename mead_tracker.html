@@ -9,26 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <style>
-    /* Optional inline styles to help with column widths */
-    th.lap-count,
-    td.lap-count {
-      width: 10%;
-      text-align: center;
-    }
-    th.time-between,
-    td.time-between {
-      width: 30%;
-    }
-    th.bubbles,
-    td.bubbles {
-      width: 30%;
-    }
-    th.strength,
-    td.strength {
-      width: 30%;
-    }
-  </style>
 </head>
 
 <body>
@@ -68,13 +48,13 @@
 
     <!-- Fermentation Data Table -->
     <div class="card mb-4">
-      <div class="card-body">
+      <div class="card-body text-center">
         <h2 class="card-title">Fermentation Data</h2>
         <table class="table table-striped" id="dataTable">
           <thead>
             <tr>
-              <th class="lap-count">Lap</th>
-              <th class="time-between">Time Between</th>
+              <th class="lap-count">#</th>
+              <th class="time-between">Time</th>
               <th class="bubbles">Bubbles</th>
               <th class="strength">Strength</th>
             </tr>
@@ -107,8 +87,8 @@
 
     <!-- Stopwatch Section -->
     <div class="card mb-4">
-      <div class="card-body">
-        <h2 class="card-title text-center">Stopwatch</h2>
+      <div class="card-body text-center">
+        <h2 class="card-title">Stopwatch</h2>
         <div id="stopwatch" class="display-4 mb-1">00:00:00:000</div>
         <div id="current-lap" class="h5 mb-1">Current Lap: 00:00:00:000</div>
         <div id="bubble-interval" class="h5 mb-1">Current Bubble Interval: --</div>

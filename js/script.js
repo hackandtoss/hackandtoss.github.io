@@ -21,6 +21,7 @@ $(document).ready(function () {
         $(".card").removeClass("bg-light").addClass("bg-dark text-light");
         $(".accordion-item").removeClass("bg-light").addClass("bg-dark text-light");
         $(".list-group-item").addClass("dark-mode");
+        $(".table").addClass("table-dark");
         $(".btn-dark").removeClass("btn-dark").addClass("btn-light");
         $(".sun-icon").css("opacity", "0");
         $(".moon-icon").css("opacity", "1");
@@ -35,6 +36,7 @@ $(document).ready(function () {
         $(".card").removeClass("bg-dark text-light").addClass("bg-light");
         $(".accordion-item").removeClass("bg-dark text-light").addClass("bg-light");
         $(".list-group-item").removeClass("dark-mode");
+        $(".table").removeClass("table-dark");
         $(".btn-light").removeClass("btn-light").addClass("btn-dark");
         $(".sun-icon").css("opacity", "1");
         $(".moon-icon").css("opacity", "0");
