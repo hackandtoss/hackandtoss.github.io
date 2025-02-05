@@ -179,20 +179,40 @@ class Stopwatch {
       $('#dataTable tbody').append(dataRow + notesRow);
     });
   
-    $("#downloadPDF").click(function () {
-      const { jsPDF } = window.jspdf;
-      let doc = new jsPDF("p", "mm", "a4"); // Portrait, millimeters, A4 size
-
-      let content = document.querySelector(".container"); // Everything between nav and footer
-
-      html2canvas(content, { scale: 2 }).then((canvas) => {
-        let imgData = canvas.toDataURL("image/png");
-        let imgWidth = 210; // A4 width in mm
-        let imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-        doc.addImage(imgData, "PNG", 0, 10, imgWidth, imgHeight);
-        doc.save("Mead_Tracker.pdf");
-      });
+    $('#downloadPDF').click(function () {
+        // Ensure jsPDF is available
+        const { jsPDF } = window.jspdf;
+    
+        // Create a new PDF document
+        const doc = new jsPDF('p', 'mm', 'a4'); 
+    
+        // Get the content to be converted to PDF
+        const content = document.querySelector('.container'); 
+    
+        // Use html2canvas to capture the content as an image
+        html2canvas(content, {
+            scale: 2, 
+            logging: true, 
+            useCORS: true, 
+            allowTaint: true, 
+        }).then((canvas) => {
+            // Convert the canvas to an image data URL
+            const imgData = canvas.toDataURL('image/png', 1.0);
+    
+            // Calculate image dimensions for A4 paper
+            const imgWidth = 210; // A4 width in mm
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    
+            // Add the image to the PDF
+            doc.addImage(imgData, 'PNG', 0, 10, imgWidth, imgHeight);
+    
+            // Save the PDF
+            doc.save('Mead_Tracker_Report.pdf');
+        }).catch((error) => {
+            console.error('Error generating PDF:', error);
+            alert('Failed to generate PDF. Please try again.');
+        });
     });
+
   });
   
