@@ -40,20 +40,21 @@ class Stopwatch {
     this.currentLapStart = now;
     this.laps.push(lapTime);
 
-    // Determine if the default row (Lap 1) is still in use
+    // Determine the current lap number (if default row still exists, update it)
     if ($('#defaultRow').length) {
-      // Update the default row with the first lap time
-      $('#defaultRow').find('.time-between').val(this.formatTime(lapTime));
-      // Remove the id so subsequent laps won't update this row
+      // Update default row's time and then remove its id so it's not updated again
+      $('#defaultRow .time-between').text(this.formatTime(lapTime));
+      $('#defaultNotesRow .notes').val($('#defaultNotesRow .notes').val()); // preserve any notes
       $('#defaultRow').removeAttr('id');
+      $('#defaultNotesRow').removeAttr('id');
     } else {
-      // Append new row for subsequent laps
-      const lapNumber = $('#dataTable tbody tr').length + 1;
-      const row = `<tr>
-        <td>${lapNumber}</td>
-        <td>${this.formatTime(lapTime)}</td>
-        <td><input type="number" class="form-control bubbles" required></td>
-        <td>
+      // For subsequent laps, append two new rows: one for data and one for notes.
+      const lapNumber = $('#dataTable tbody tr.data-row').length + 2; // +2 because default row is lap 1
+      const dataRow = `<tr class="data-row">
+        <td class="lap-count">${lapNumber}</td>
+        <td class="time-between">${this.formatTime(lapTime)}</td>
+        <td class="bubbles"><input type="number" class="form-control bubbles" required></td>
+        <td class="strength">
           <select class="form-select strength">
             <option value="" disabled selected>Select</option>
             <option value="low">Low</option>
@@ -61,9 +62,11 @@ class Stopwatch {
             <option value="high">High</option>
           </select>
         </td>
-        <td><textarea class="form-control notes"></textarea></td>
       </tr>`;
-      $('#dataTable tbody').append(row);
+      const notesRow = `<tr class="notes-row">
+        <td colspan="4"><textarea class="form-control notes" placeholder="Notes"></textarea></td>
+      </tr>`;
+      $('#dataTable tbody').append(dataRow + notesRow);
     }
 
     // Update bubble interval display
@@ -131,11 +134,13 @@ $(document).ready(function() {
   $('#lap').click(() => stopwatch.lap());
 
   $('#addRow').click(function() {
-    const row = `<tr>
-      <td>${$('#dataTable tbody tr').length + 1}</td>
-      <td>--</td>
-      <td><input type="number" class="form-control bubbles" required></td>
-      <td>
+    // Append a new record (2 rows: data row and notes row)
+    const rowNumber = $('#dataTable tbody tr.data-row').length + 2; // +2 because default row is lap 1
+    const dataRow = `<tr class="data-row">
+      <td class="lap-count">${rowNumber}</td>
+      <td class="time-between">--</td>
+      <td class="bubbles"><input type="number" class="form-control bubbles" required></td>
+      <td class="strength">
         <select class="form-select strength">
           <option value="" disabled selected>Select</option>
           <option value="low">Low</option>
@@ -143,9 +148,11 @@ $(document).ready(function() {
           <option value="high">High</option>
         </select>
       </td>
-      <td><textarea class="form-control notes"></textarea></td>
     </tr>`;
-    $('#dataTable tbody').append(row);
+    const notesRow = `<tr class="notes-row">
+      <td colspan="4"><textarea class="form-control notes" placeholder="Notes"></textarea></td>
+    </tr>`;
+    $('#dataTable tbody').append(dataRow + notesRow);
   });
 
   $('#generatePdf').click(function() {
@@ -156,11 +163,12 @@ $(document).ready(function() {
 
     // Add table data
     const rows = [];
-    $('#dataTable tbody tr').each(function() {
-      const time = $(this).find('td').eq(1).find('input').val() || $(this).find('td').eq(1).text();
+    $('#dataTable tbody tr.data-row').each(function(index) {
+      const time = $(this).find('.time-between').text();
       const bubbles = $(this).find('.bubbles').val();
       const strength = $(this).find('.strength').val();
-      const notes = $(this).find('.notes').val();
+      // Get the corresponding notes from the next row
+      const notes = $(this).next('.notes-row').find('.notes').val();
       rows.push([time, bubbles, strength, notes]);
     });
 
