@@ -117,6 +117,20 @@ class Stopwatch {
   
   $(document).ready(function() {
     const stopwatch = new Stopwatch();
+
+    let now = new Date();
+
+    // Format date as YYYY-MM-DD
+    let dateString = now.toISOString().split("T")[0];
+
+    // Format time as HH:MM (24-hour format)
+    let hours = String(now.getHours()).padStart(2, "0");
+    let minutes = String(now.getMinutes()).padStart(2, "0");
+    let timeString = `${hours}:${minutes}`;
+
+    // Set values in the input fields
+    $("#date").val(dateString);
+    $("#time").val(timeString);
   
     $('#startStop').click(function() {
       if (!stopwatch.running) {
@@ -158,30 +172,20 @@ class Stopwatch {
       $('#dataTable tbody').append(dataRow + notesRow);
     });
   
-    $('#generatePdf').click(function() {
-      const doc = new jspdf.jsPDF();
-      doc.setFontSize(18);
-      doc.text('Mead Fermentation Report', 15, 15);
-      doc.setFontSize(12);
-  
-      // Add table data
-      const rows = [];
-      $('#dataTable tbody tr.data-row').each(function(index) {
-        const time = $(this).find('.time-between').text();
-        const bubbles = $(this).find('.bubbles').val();
-        const strength = $(this).find('.strength').val();
-        // Get the corresponding notes from the next row
-        const notes = $(this).next('.notes-row').find('.notes').val();
-        rows.push([time, bubbles, strength, notes]);
+    $("#downloadPDF").click(function () {
+      const { jsPDF } = window.jspdf;
+      let doc = new jsPDF("p", "mm", "a4"); // Portrait, millimeters, A4 size
+
+      let content = document.querySelector(".container"); // Everything between nav and footer
+
+      html2canvas(content, { scale: 2 }).then((canvas) => {
+        let imgData = canvas.toDataURL("image/png");
+        let imgWidth = 210; // A4 width in mm
+        let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        doc.addImage(imgData, "PNG", 0, 10, imgWidth, imgHeight);
+        doc.save("Mead_Tracker.pdf");
       });
-  
-      doc.autoTable({
-        startY: 25,
-        head: [['Time', 'Bubbles', 'Strength', 'Notes']],
-        body: rows
-      });
-  
-      doc.save('fermentation-report.pdf');
     });
   });
   
