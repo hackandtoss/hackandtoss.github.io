@@ -23,9 +23,9 @@ class Stopwatch {
       this.running = false;
       this.totalMilliseconds = Date.now() - this.startTime;
 
-      // Record final lap if there's unrecorded time
+      // Only record the final lap if more than 500ms have passed since the last lap.
       const elapsedSinceLastLap = Date.now() - this.currentLapStart;
-      if (elapsedSinceLastLap > 0) {
+      if (elapsedSinceLastLap > 500) {
         this.lap();
       }
     }
@@ -53,7 +53,8 @@ class Stopwatch {
       // Update default row's time and then remove its id so it won't be updated again
       $("#defaultRow .time-between").text(this.formatTime(lapTime));
       $("#defaultRow").find(".lap-count").text(lapNumber);
-      $("#defaultNotesRow .notes").val($("#defaultNotesRow .notes").val()); // preserve any notes
+      // Preserve any notes
+      $("#defaultNotesRow .notes").val($("#defaultNotesRow .notes").val());
       $("#defaultRow").removeAttr("id");
       $("#defaultNotesRow").removeAttr("id");
     } else {
@@ -84,7 +85,7 @@ class Stopwatch {
 
     // Update average lap time (computed only from recorded laps)
     const totalLapTime = this.laps.reduce((a, b) => a + b, 0);
-    // Get average lap time (computed only from recorded laps) rounded to the nearest millisecond
+    // Round average lap time to the nearest millisecond
     const avgLapTime = Math.round(totalLapTime / this.laps.length);
     $("#average-time").text(`Average Lap: ${this.formatTime(avgLapTime)}`);
   }
@@ -113,7 +114,7 @@ class Stopwatch {
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
       2,
       "0"
-    )}.${String(ms).padStart(3, "0")}`;
+    )}:${String(ms).padStart(3, "0")}`;
   }
 
   updateTextColor() {
@@ -191,168 +192,131 @@ $(document).ready(function () {
 
   $("#downloadPDF").click(function () {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF("p", "mm", "a4");
+    const doc = new jsPDF("p", "mm", "letter"); // Letter paper size
 
     // Styling constants
     const headerColor = [44, 62, 80]; // Dark blue for headers
-    const rowColor = [241, 243, 245]; // Light gray for alternate rows
     const textColor = [34, 34, 34]; // Dark gray for text
     const margin = 15; // Page margin
-    let yPosition = margin; // Tracks vertical position on the page
+    let yPosition = margin; // Starting vertical position
 
-    // Add header
+    // Helper function to convert 24-hour time (HH:MM) to 12-hour format with AM/PM
+    function convertTo12Hour(time24) {
+        const [hourStr, minute] = time24.split(":");
+        let hour = parseInt(hourStr);
+        const ampm = hour >= 12 ? "PM" : "AM";
+        hour = hour % 12 || 12;
+        return `${hour}:${minute} ${ampm}`;
+    }
+
+    // 1. Add Report Header
     doc.setFontSize(18);
     doc.setTextColor(...headerColor);
     doc.text("Mead Fermentation Report", margin, yPosition);
     yPosition += 10;
 
-    // Add report generation date and time
     doc.setFontSize(10);
     doc.setTextColor(...textColor);
-    doc.text(
-      `Report generated: ${new Date().toLocaleString()}`,
-      margin,
-      yPosition
-    );
-    yPosition += 15;
-
-    // Add Fermentation Details section
-    doc.setFontSize(14);
-    doc.setTextColor(...headerColor);
-    doc.text("Fermentation Details", margin, yPosition);
+    const reportGenerated = new Date().toLocaleString();
+    doc.text(`Report Generated: ${reportGenerated}`, margin, yPosition);
     yPosition += 10;
 
-    // Extract Fermentation Details
-    const fermentationDetails = {
-      Date: $("#date").val(),
-      Time: $("#time").val(),
-      Hours: $("#hours").val(),
-      "Temperature (°F)": $("#temperature").val(),
-      "Humidity (%)": $("#humidity").val(),
-    };
-
-    // Create Fermentation Details table
-    doc.autoTable({
-      startY: yPosition,
-      head: [["Metric", "Value"]],
-      body: Object.entries(fermentationDetails),
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 3,
-        textColor: textColor,
-      },
-      headStyles: {
-        fillColor: headerColor,
-        textColor: [255, 255, 255],
-      },
-    });
-    yPosition = doc.lastAutoTable.finalY + 10;
-
-    // Add Summary Section
-    doc.setFontSize(14);
+    // 2. Add Session Details as Plain Text
+    // Retrieve values from inputs
+    const hoursValue = $("#hours").val() || "N/A";
+    const startTime24 = $("#time").val() || "N/A";
+    const startTime12 = startTime24 !== "N/A" ? convertTo12Hour(startTime24) : "N/A";
+    const temperature = $("#temperature").val() || "N/A";
+    const humidity = $("#humidity").val() || "N/A";
+    const sessionDetailsText = `Session Details: Hours - ${hoursValue}, Start Time - ${startTime12}, Temperature (°F) - ${temperature}, Humidity (%) - ${humidity}`;
+    doc.setFontSize(12);
     doc.setTextColor(...headerColor);
-    doc.text("Fermentation Summary", margin, yPosition);
+    doc.text(sessionDetailsText, margin, yPosition);
     yPosition += 10;
 
-    // Summary data
-    const summaryData = {
-      "Total Duration": $("#stopwatch").text(),
-      "Total Bubbles": $(".bubbles")
+    // 3. Add Summary Section
+    doc.setFontSize(14);
+    doc.setTextColor(...headerColor);
+    doc.text("Summary", margin, yPosition);
+    yPosition += 8;
+
+    // Compute total bubbles from data rows
+    const totalBubbles = $(".data-row .bubbles input")
         .get()
-        .reduce((sum, el) => sum + (+el.value || 0), 0),
-      "Average Interval": $("#average-time")
-        .text()
-        .replace("Average Lap: ", ""),
-      "Last Interval": $("#bubble-interval")
-        .text()
-        .replace("Last Bubble Interval: ", ""),
+        .reduce((sum, el) => sum + (+el.value || 0), 0);
+
+    const summaryData = {
+        "Total Duration": $("#stopwatch").text(),
+        "Total Bubbles": totalBubbles,
+        "Average Interval": $("#average-time").text().replace("Average Lap: ", ""),
     };
 
-    // Create Summary table
     doc.autoTable({
-      startY: yPosition,
-      head: [["Metric", "Value"]],
-      body: Object.entries(summaryData),
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 3,
-        textColor: textColor,
-      },
-      headStyles: {
-        fillColor: headerColor,
-        textColor: [255, 255, 255],
-      },
+        startY: yPosition,
+        head: [["Metric", "Value"]],
+        body: Object.entries(summaryData),
+        theme: "grid",
+        styles: { fontSize: 10, cellPadding: 3, textColor: textColor },
+        headStyles: { fillColor: headerColor, textColor: [255, 255, 255] },
+        margin: { left: margin, right: margin },
     });
     yPosition = doc.lastAutoTable.finalY + 10;
 
-    // Add Detailed Measurements Section
+    // 4. Add Detailed Measurements Section
     doc.setFontSize(14);
     doc.setTextColor(...headerColor);
     doc.text("Detailed Measurements", margin, yPosition);
-    yPosition += 10;
+    yPosition += 8;
 
-    // Prepare table data
     const tableData = [];
-    $(".data-row").each(function (index) {
-      const row = {
-        lap: $(this).find(".lap-count").text(),
-        time: $(this).find(".time-between").text(),
-        bubbles: $(this).find(".bubbles input").val(),
-        strength: $(this).find(".strength select").val(),
-        notes: $(this).next(".notes-row").find(".notes").val(),
-      };
-      tableData.push([
-        row.lap,
-        row.time,
-        row.bubbles || "0",
-        row.strength || "N/A",
-        row.notes || "No notes",
-      ]);
+    $(".data-row").each(function () {
+        const lap = $(this).find(".lap-count").text();
+        const timeInterval = $(this).find(".time-between").text();
+
+        // Extract bubbles value from input field
+        const bubbles = $(this).find(".bubbles input").val() || "0";
+
+        // Extract strength value from select field
+        const strength = $(this).find(".strength select").val() || "N/A";
+
+        // Extract notes from the corresponding textarea
+        const notes = $(this).next(".notes-row").find(".notes").val() || "No notes";
+
+        tableData.push([lap, timeInterval, bubbles, strength, notes]);
     });
 
-    // Create Detailed Measurements table
     doc.autoTable({
-      startY: yPosition,
-      head: [["Lap", "Time Interval", "Bubbles", "Strength", "Notes"]],
-      body: tableData,
-      theme: "grid",
-      styles: {
-        fontSize: 9,
-        cellPadding: 2,
-        textColor: textColor,
-      },
-      headStyles: {
-        fillColor: headerColor,
-        textColor: [255, 255, 255],
-      },
-      alternateRowStyles: {
-        fillColor: rowColor,
-      },
-      columnStyles: {
-        0: { cellWidth: 15 },
-        1: { cellWidth: 30 },
-        2: { cellWidth: 25 },
-        3: { cellWidth: 25 },
-        4: { cellWidth: 95 },
-      },
+        startY: yPosition,
+        head: [["Lap", "Time Interval", "Bubbles", "Strength", "Notes"]],
+        body: tableData,
+        theme: "grid",
+        styles: { fontSize: 9, cellPadding: 2, textColor: textColor },
+        headStyles: { fillColor: headerColor, textColor: [255, 255, 255] },
+        alternateRowStyles: { fillColor: [241, 243, 245] },
+        margin: { left: margin, right: margin },
+        columnStyles: {
+            0: { cellWidth: 15 },
+            1: { cellWidth: 30 },
+            2: { cellWidth: 25 },
+            3: { cellWidth: 25 },
+            4: { cellWidth: 95 },
+        },
     });
 
-    // Add footer
+    // 5. Add footer on each page
     const pageCount = doc.internal.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
-      doc.setPage(i);
-      doc.setFontSize(8);
-      doc.setTextColor(100);
-      doc.text(
-        `Page ${i} of ${pageCount} - hackandtoss Mead Tracker`,
-        doc.internal.pageSize.width - 60,
-        doc.internal.pageSize.height - 10
-      );
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(100);
+        doc.text(
+            `Page ${i} of ${pageCount} - hackandtoss Mead Tracker`,
+            doc.internal.pageSize.width - 60,
+            doc.internal.pageSize.height - 10
+        );
     }
 
     // Save the PDF
     doc.save("Mead_Fermentation_Report.pdf");
-  });
+});
 });
