@@ -66,9 +66,10 @@ class Stopwatch {
           <td class="strength">
             <select class="form-select strength">
               <option value="" disabled selected>Select</option>
-              <option value="low">Low</option>
+              <option value="weak">Weak</option>
               <option value="medium">Medium</option>
-              <option value="high">High</option>
+              <option value="normal">Normal</option>
+              <option value="strong">Strong</option>
             </select>
           </td>
         </tr>`;
