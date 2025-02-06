@@ -179,40 +179,129 @@ class Stopwatch {
       $('#dataTable tbody').append(dataRow + notesRow);
     });
   
-    $('#downloadPDF').click(function () {
-        // Ensure jsPDF is available
-        const { jsPDF } = window.jspdf;
+   $("#downloadPDF").click(function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF("p", "mm", "a4");
     
-        // Create a new PDF document
-        const doc = new jsPDF('p', 'mm', 'a4'); 
-    
-        // Get the content to be converted to PDF
-        const content = document.querySelector('.container'); 
-    
-        // Use html2canvas to capture the content as an image
-        html2canvas(content, {
-            scale: 2, 
-            logging: true, 
-            useCORS: true, 
-            allowTaint: true, 
-        }).then((canvas) => {
-            // Convert the canvas to an image data URL
-            const imgData = canvas.toDataURL('image/png', 1.0);
-    
-            // Calculate image dimensions for A4 paper
-            const imgWidth = 210; // A4 width in mm
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    
-            // Add the image to the PDF
-            doc.addImage(imgData, 'PNG', 0, 10, imgWidth, imgHeight);
-    
-            // Save the PDF
-            doc.save('Mead_Tracker_Report.pdf');
-        }).catch((error) => {
-            console.error('Error generating PDF:', error);
-            alert('Failed to generate PDF. Please try again.');
-        });
+    // Styling constants
+    const headerColor = [44, 62, 80];
+    const rowColor = [241, 243, 245];
+    const textColor = [34, 34, 34];
+    const margin = 15;
+    let yPosition = margin;
+
+    // Add header
+    doc.setFontSize(18);
+    doc.setTextColor(...headerColor);
+    doc.text("Mead Fermentation Report", margin, yPosition);
+    yPosition += 10;
+
+    // Add date and time
+    doc.setFontSize(10);
+    doc.setTextColor(...textColor);
+    doc.text(`Report generated: ${new Date().toLocaleString()}`, margin, yPosition);
+    yPosition += 15;
+
+    // Add summary section
+    doc.setFontSize(14);
+    doc.setTextColor(...headerColor);
+    doc.text("Fermentation Summary", margin, yPosition);
+    yPosition += 10;
+
+    // Summary data
+    const summaryData = {
+        "Total Duration": $('#stopwatch').text(),
+        "Total Bubbles": $('.bubbles').get().reduce((sum, el) => sum + (+el.value || 0), 0),
+        "Average Interval": $('#average-time').text().replace('Average Lap: ', ''),
+        "Last Interval": $('#bubble-interval').text().replace('Last Bubble Interval: ', '')
+    };
+
+    // Create summary table
+    doc.autoTable({
+        startY: yPosition,
+        head: [['Metric', 'Value']],
+        body: Object.entries(summaryData),
+        theme: 'grid',
+        styles: { 
+            fontSize: 10,
+            cellPadding: 3,
+            textColor: textColor
+        },
+        headStyles: {
+            fillColor: headerColor,
+            textColor: [255, 255, 255]
+        }
     });
+    yPosition = doc.lastAutoTable.finalY + 10;
+
+    // Detailed Data Table
+    doc.setFontSize(14);
+    doc.setTextColor(...headerColor);
+    doc.text("Detailed Measurements", margin, yPosition);
+    yPosition += 10;
+
+    // Prepare table data
+    const tableData = [];
+    $('.data-row').each(function(index) {
+        const row = {
+            lap: $(this).find('.lap-count').text(),
+            time: $(this).find('.time-between').text(),
+            bubbles: $(this).find('.bubbles input').val(),
+            strength: $(this).find('.strength select').val(),
+            notes: $(this).next('.notes-row').find('.notes').val()
+        };
+        tableData.push([
+            row.lap,
+            row.time,
+            row.bubbles || '0',
+            row.strength || 'N/A',
+            row.notes || 'No notes'
+        ]);
+    });
+
+    // Create detailed table
+    doc.autoTable({
+        startY: yPosition,
+        head: [['Lap', 'Time Interval', 'Bubbles', 'Strength', 'Notes']],
+        body: tableData,
+        theme: 'grid',
+        styles: {
+            fontSize: 9,
+            cellPadding: 2,
+            textColor: textColor
+        },
+        headStyles: {
+            fillColor: headerColor,
+            textColor: [255, 255, 255]
+        },
+        alternateRowStyles: {
+            fillColor: rowColor
+        },
+        columnStyles: {
+            0: { cellWidth: 15 },
+            1: { cellWidth: 30 },
+            2: { cellWidth: 25 },
+            3: { cellWidth: 25 },
+            4: { cellWidth: 95 }
+        }
+    });
+
+    // Add footer
+    const pageCount = doc.internal.getNumberOfPages();
+    for(let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(100);
+        doc.text(
+            `Page ${i} of ${pageCount} - hackandtoss Mead Tracker`, 
+            doc.internal.pageSize.width - 60,
+            doc.internal.pageSize.height - 10
+        );
+    }
+
+    // Save the PDF
+    doc.save('Mead_Fermentation_Report.pdf');
+}); 
 
   });
   
