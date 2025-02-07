@@ -2,7 +2,7 @@ class Stopwatch {
   constructor() {
     this.startTime = null;
     this.running = false;
-    this.laps = []; // Only lap times recorded after the default row
+    this.laps = [];
     this.interval = null;
     this.totalMilliseconds = 0;
     this.currentLapStart = 0;
@@ -192,14 +192,14 @@ $(document).ready(function () {
 
   $("#downloadPDF").click(function () {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF("p", "mm", "letter"); // Letter paper size (approx. 216 x 279 mm)
-  
+    const doc = new jsPDF("p", "mm", "letter");
+
     // Styling constants
-    const headerColor = [44, 62, 80]; // Dark blue for headers
-    const textColor = [34, 34, 34];    // Dark gray for text
-    const margin = 15;                // Page margin
-    let yPosition = margin;           // Starting vertical position
-  
+    const headerColor = [44, 62, 80];
+    const textColor = [34, 34, 34];
+    const margin = 15;
+    let yPosition = margin;
+
     // Helper function to convert 24-hour time (HH:MM) to 12-hour format with AM/PM
     function convertTo12Hour(time24) {
       const [hourStr, minute] = time24.split(":");
@@ -208,7 +208,7 @@ $(document).ready(function () {
       hour = hour % 12 || 12;
       return `${hour}:${minute} ${ampm}`;
     }
-  
+
     // Helper function: parse a manual time string (expected format: mm:ss.ms) into milliseconds
     function parseTimeString(timeStr) {
       // Example expected format: "03:14.159"
@@ -221,31 +221,35 @@ $(document).ready(function () {
       const ms = parseInt(secParts[1], 10);
       return minutes * 60000 + seconds * 1000 + ms;
     }
-  
+
     // Helper function: format milliseconds as mm:ss.ms
     function formatTimeManual(milliseconds) {
       const minutes = Math.floor(milliseconds / 60000);
       const seconds = Math.floor((milliseconds % 60000) / 1000);
       const ms = milliseconds % 1000;
-      return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
+      return `${String(minutes).padStart(
+        2,
+        "0"
+      )}:${String(seconds).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
     }
-  
+
     // 1. Add Report Header
     doc.setFontSize(18);
     doc.setTextColor(...headerColor);
     doc.text("Mead Fermentation Report", margin, yPosition);
     yPosition += 10;
-  
+
     doc.setFontSize(10);
     doc.setTextColor(...textColor);
     const reportGenerated = new Date().toLocaleString();
     doc.text(`Report Generated: ${reportGenerated}`, margin, yPosition);
     yPosition += 10;
-  
+
     // 2. Add Session Details as Plain Text
     const hoursValue = $("#hours").val() || "N/A";
     const startTime24 = $("#time").val() || "N/A";
-    const startTime12 = startTime24 !== "N/A" ? convertTo12Hour(startTime24) : "N/A";
+    const startTime12 =
+      startTime24 !== "N/A" ? convertTo12Hour(startTime24) : "N/A";
     const temperature = $("#temperature").val() || "N/A";
     const humidity = $("#humidity").val() || "N/A";
     const sessionDetailsText = `Session Details: Hours - ${hoursValue}, Start Time - ${startTime12}, Temperature (°F) - ${temperature}, Humidity (%) - ${humidity}`;
@@ -253,23 +257,25 @@ $(document).ready(function () {
     doc.setTextColor(...headerColor);
     doc.text(sessionDetailsText, margin, yPosition);
     yPosition += 10;
-  
-    // 3. Add Summary Section (prioritize stopwatch values, fallback to manual if stopwatch is default)
+
+    // 3. Add Summary Section
     doc.setFontSize(14);
     doc.setTextColor(...headerColor);
     doc.text("Summary", margin, yPosition);
     yPosition += 8;
-  
+
     const totalBubbles = $(".data-row .bubbles input")
       .get()
       .reduce((sum, el) => sum + (+el.value || 0), 0);
-  
-    const stopwatchDuration = $("#stopwatch").text(); // e.g., "00:00.000"
+
+    const stopwatchDuration = $("#stopwatch").text();
     let totalDurationStr, averageIntervalStr;
     if (stopwatchDuration !== "00:00.000") {
       // Use stopwatch values if available
       totalDurationStr = stopwatchDuration;
-      averageIntervalStr = $("#average-time").text().replace("Average Lap: ", "");
+      averageIntervalStr = $("#average-time")
+        .text()
+        .replace("Average Lap: ", "");
     } else {
       // Otherwise, sum the manual times from .time-input fields
       let manualTotal = 0;
@@ -286,20 +292,24 @@ $(document).ready(function () {
       });
       if (manualCount > 0) {
         totalDurationStr = formatTimeManual(manualTotal);
-        averageIntervalStr = formatTimeManual(Math.round(manualTotal / manualCount));
+        averageIntervalStr = formatTimeManual(
+          Math.round(manualTotal / manualCount)
+        );
       } else {
         // Fallback in case neither is entered
         totalDurationStr = stopwatchDuration;
-        averageIntervalStr = $("#average-time").text().replace("Average Lap: ", "");
+        averageIntervalStr = $("#average-time")
+          .text()
+          .replace("Average Lap: ", "");
       }
     }
-  
+
     const summaryData = {
       "Total Duration": totalDurationStr,
       "Total Bubbles": totalBubbles,
       "Average Interval": averageIntervalStr,
     };
-  
+
     doc.autoTable({
       startY: yPosition,
       head: [["Metric", "Value"]],
@@ -310,23 +320,24 @@ $(document).ready(function () {
       margin: { left: margin, right: margin },
     });
     yPosition = doc.lastAutoTable.finalY + 10;
-  
+
     // 4. Add Detailed Measurements Section
     doc.setFontSize(14);
     doc.setTextColor(...headerColor);
     doc.text("Detailed Measurements", margin, yPosition);
     yPosition += 8;
-  
+
     const tableData = [];
     $(".data-row").each(function () {
       const lap = $(this).find(".lap-count").text();
       const timeInterval = $(this).find(".time-input").val() || "--";
       const bubbles = $(this).find(".bubbles input").val() || "0";
       const strength = $(this).find(".strength select").val() || "N/A";
-      const notes = $(this).next(".notes-row").find(".notes").val() || "No notes";
+      const notes =
+        $(this).next(".notes-row").find(".notes").val() || "No notes";
       tableData.push([lap, timeInterval, bubbles, strength, notes]);
     });
-  
+
     doc.autoTable({
       startY: yPosition,
       head: [["Lap", "Time Interval", "Bubbles", "Strength", "Notes"]],
@@ -344,7 +355,7 @@ $(document).ready(function () {
         4: { cellWidth: 95 },
       },
     });
-  
+
     // 5. Add footer on each page
     const pageCount = doc.internal.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
@@ -357,9 +368,8 @@ $(document).ready(function () {
         doc.internal.pageSize.height - 10
       );
     }
-  
+
     // Save the PDF
     doc.save("Mead_Fermentation_Report.pdf");
   });
-
 });
