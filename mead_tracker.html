@@ -92,6 +92,7 @@
         <div class="card mb-4">
             <div class="card-body text-center">
                 <h2 class="card-title">Fermentation Data</h2>
+                <!-- Update the table structure -->
                 <table class="table table-striped" id="dataTable">
                     <thead>
                         <tr>
@@ -102,9 +103,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Default row -->
                         <tr class="data-row" id="defaultRow">
                             <td class="lap-count">1</td>
-                            <td class="time-between">--</td>
+                            <td class="time-between">
+                                <input type="text" class="form-control time-input">
+                            </td>
                             <td class="bubbles"><input type="number" class="form-control bubbles" required></td>
                             <td class="strength">
                                 <select class="form-select strength">
