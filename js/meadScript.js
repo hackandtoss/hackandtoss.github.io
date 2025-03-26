@@ -190,6 +190,17 @@ $(document).ready(function () {
     $("#dataTable tbody").append(dataRow + notesRow);
   });
 
+  $("#removeRow").click(function () {
+    // Check if there's more than one data row (assuming you want to always keep at least one)
+    if ($(".data-row").length > 1) {
+      // Remove the last associated notes row and the last data row
+      $(".notes-row").last().remove();
+      $(".data-row").last().remove();
+    } else {
+      alert("Cannot remove the default row.");
+    }
+  });
+
   $("#downloadPDF").click(function () {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF("p", "mm", "letter");
