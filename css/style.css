@@ -1,6 +1,8 @@
 /* Base Styles */
+
 body {
     transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
     background-color: #ffffff;
     color: #353b42;
 }
