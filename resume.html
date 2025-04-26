@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
 </head>
+
 <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand me-auto" href="index.html"><span class="text-danger">hackandtoss</span>@<span class="text-success">root~$ </span><span class="blinking-cursor">_</span></a>
-            
+            <a class="navbar-brand me-auto" href="index.html"><span class="text-danger">hackandtoss</span>@<span
+                    class="text-success">root~$ </span><span class="blinking-cursor">_</span></a>
+
             <div class="theme-toggle">
                 <label class="switch">
                     <input type="checkbox" id="modeToggle">
@@ -29,12 +32,12 @@
                 </label>
                 <span id="modeText">Enable Dark Mode</span>
             </div>
-            
+
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
@@ -46,166 +49,232 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card shadow-lg p-4">
-                <div class="text-center">
-                    <h1 class="display-4">Chris Johnson</h1>
-                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:jobs.purge002@passinbox.com">jobs.purge002@passinbox.com</a></p>
-                    <p>
-                        <a href="https://www.linkedin.com/in/john-johnson-77b15247" class="btn btn-primary btn-sm me-2" target="_blank">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="https://github.com/hackandtoss" class="btn btn-dark btn-sm" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </p>
-                </div>
-
-                <hr>
-
-                <div class="resume-section mb-4">
-                    <h2><i class="fas fa-user"></i> Summary</h2>
-                    <p>Cybersecurity professional with a B.S. in Computer Science, GIAC GFACT certified. Skilled in programming, security audits, and OSINT tools. Passionate about Digital Forensics, Reverse Engineering, and Penetration Testing.</p>
-                </div>
-
-                <div class="resume-section mb-4">
-                    <h2 class="mb-3"><i class="fas fa-briefcase me-2"></i>Work Experience</h2>
-                    <div class="accordion" id="workExperience">
-                        
-                        <!-- Job 1 -->
-                        <div class="accordion-item mb-2">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button d-flex flex-column align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#job1">
-                                    <div class="d-flex w-100 justify-content-between align-items-center">
-                                        <span class="h6 mb-0 fw-bold">Advanced Accounts Recovery LLC (Client Engagement)</span>
-                                    </div>
-                                    <span class="text-muted small mt-1">Freelance IT Systems Architect & Developer</span>
-                                </button>
-                            </h2>
-                            <div id="job1" class="accordion-collapse collapse show" data-bs-parent="#workExperience">
-                                <div class="accordion-body">
-                                    <ul class="mb-0 list-group">
-                                        <li class="list-group-item">Led end-to-end design and partial implementation of a custom debt collection management platform using Node.js (Express.js), MySQL, and hybrid cloud/on-premises architectures.</li>
-                                        <li class="list-group-item">Engineered database schemas to support features such as user authentication, automated document generation, payment tracking, negotiation portals, calendar scheduling, and round-robin debtor assignments.</li>
-                                        <li class="list-group-item">Developed technical proposals, system diagrams, cost analyses, and vendor research to support transitioning from manual CMS workflows to a scalable, automated solution.</li>
-                                        <li class="list-group-item">Modernized existing Squarespace websites, improved UX/UI, and created a migration plan to a modular Express-based platform.</li>
-                                        <li class="list-group-item">Provided network administration, including Active Directory (ADDS) setup, Group Policy (GP) configuration, and general IT support across multiple office systems.</li>
-                                        <li class="list-group-item">Presented multiple architectural solutions and collaborated with stakeholders to align platform features with operational needs and budget constraints.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <!-- Job 2 -->
-                        <div class="accordion-item mb-2">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed d-flex flex-column align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#job2">
-                                    <div class="d-flex w-100 justify-content-between align-items-center">
-                                        <span class="h6 mb-0 fw-bold">CSU Monterey Bay</span>
-                                    </div>
-                                    <span class="text-muted small mt-1">Teacher Assistant</span>
-                                </button>
-                            </h2>
-                            <div id="job2" class="accordion-collapse collapse" data-bs-parent="#workExperience">
-                                <div class="accordion-body">
-                                    <ul class="mb-0 list-group">
-                                        <li class="list-group-item">Graded student assignments and labs and held frequent office hours.</li>
-                                        <li class="list-group-item">Guided students through challenging programming assignments, networking tasks, and problem-solving.</li>
-                                        <li class="list-group-item">Taught complex concepts such as socket programming, multithreading, Python coding, managing virtual Linux instances, essential command-line tools, and virtual networking.</li>
-                                        <li class="list-group-item">Assisted with VirtualBox, Mininet, Python (sockets, threading), and networking fundamentals (OSI model)</li>
-                                        <li class="list-group-item">Helped design extra credit assignments (e.g., Wireshark capture analysis of an Nmap X-mas scan) and graded coursework.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <!-- Job 3 -->
-                        <div class="accordion-item mb-2">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed d-flex flex-column align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#job3">
-                                    <div class="d-flex w-100 justify-content-between align-items-center">
-                                        <span class="h6 mb-0 fw-bold">Penetrate This</span>
-                                    </div>
-                                    <span class="text-muted small mt-1">Chief Security Analyst</span>
-                                </button>
-                            </h2>
-                            <div id="job3" class="accordion-collapse collapse" data-bs-parent="#workExperience">
-                                <div class="accordion-body">
-                                    <ul class="mb-0 list-group">
-                                        <li class="list-group-item">Founded and operated a cybersecurity consultancy</li>
-                                        <li class="list-group-item">Provided vulnerability assessments and IT solutions</li>
-                                        <li class="list-group-item">Performed system recoveries and implemented security strategies</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <!-- Job 4 -->
-                        <div class="accordion-item mb-2">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed d-flex flex-column align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#job4">
-                                    <div class="d-flex w-100 justify-content-between align-items-center">
-                                        <span class="h6 mb-0 fw-bold">Cornerstone Family Counseling Services</span>
-                                    </div>
-                                    <span class="text-muted small mt-1">Administrative Director</span>
-                                </button>
-                            </h2>
-                            <div id="job4" class="accordion-collapse collapse" data-bs-parent="#workExperience">
-                                <div class="accordion-body">
-                                    <ul class="mb-0 list-group">
-                                        <li class="list-group-item">Managed office operations and client records</li>
-                                        <li class="list-group-item">Utilized data analytics tools for business insights</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg p-4">
+                    <div class="text-center">
+                        <h1 class="display-4">Chris Johnson</h1>
+                        <p><i class="fas fa-envelope"></i> Email: <a
+                                href="mailto:jobs.purge002@passinbox.com">jobs.purge002@passinbox.com</a></p>
+                        <p>
+                            <a href="https://www.linkedin.com/in/john-johnson-77b15247"
+                                class="btn btn-primary btn-sm me-2" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="https://github.com/hackandtoss" class="btn btn-dark btn-sm" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </p>
                     </div>
-                </div>
 
+                    <hr>
 
-                        
-                <div class="resume-section mb-4">
-                    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-                    <ul class="list-group">
-                        <li class="list-group-item"><strong>California State University, Monterey Bay</strong> - B.S. in Computer Science (2023)</li>
-                        <li class="list-group-item"><strong>Clovis Community College</strong> - A.S. in Computer Science (2020)</li>
-                    </ul>
-                </div>
+                    <div class="resume-section mb-4">
+                        <h2><i class="fas fa-user"></i> Summary</h2>
+                        <p>A versatile IT and cybersecurity professional with a B.S. in Computer Science (Networking &
+                            Security concentration) from CSUMB and GIAC GFACT certification. I bring hands-on experience
+                            in IT consulting, network administration, full-stack development, and cybersecurity
+                            operations. I have designed and developed cloud and on-premises solutions, modernized web
+                            infrastructure, and performed vulnerability assessments and digital forensics across diverse
+                            environments.
+                            My competitive performance in National Cyber League (95th percentile) and leadership of
+                            technical projects such as a machine learning-based IDS and a debt collection automation
+                            platform demonstrate a strong offensive and defensive security mindset. I am passionate
+                            about penetration testing, red team tactics, secure software development, and creative
+                            problem solving.
+                            I am seeking opportunities in Cybersecurity, Red Team Operations, Software Development, or
+                            Digital Forensics that allow me to leverage technical, analytical, and security expertise
+                            while continuing to grow with emerging technologies.
+                        </p>
+                    </div>
 
-                <div class="resume-section mb-4">
-                    <h2><i class="fas fa-certificate"></i> Certifications</h2>
-                    <ul class="list-group">
-                        <li class="list-group-item"><strong>GIAC GFACT</strong> - Expires Sep 2027</li>
-                    </ul>
-                </div>
+                    <div class="resume-section mb-4">
+                        <h2 class="mb-3"><i class="fas fa-briefcase me-2"></i>Work Experience</h2>
+                        <div class="accordion" id="workExperience">
 
-                <div class="resume-section mb-4">
-                    <h2><i class="fas fa-code"></i> Skills</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <ul class="list-group">
-                                <li class="list-group-item"><strong>Programming:</strong> Java, JavaScript, ARM, C, C++, Python, HTML, CSS, BASH, SQL, AWK</li>
-                                <li class="list-group-item"><strong>Cybersecurity:</strong> Reverse Engineering, Digital Forensics, Packet Analysis, Log Analysis, Incident Response, Threat Intelligence, OSINT</li>
-                            </ul>
+                            <!-- Job 1 -->
+                            <div class="accordion-item mb-2">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button d-flex flex-column align-items-start" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#job1">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <span class="h6 mb-0 fw-bold">Advanced Accounts Recovery LLC (Client
+                                                Engagement)</span>
+                                        </div>
+                                        <span class="text-muted small mt-1">Freelance IT Systems Architect &
+                                            Developer</span>
+                                    </button>
+                                </h2>
+                                <div id="job1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#workExperience">
+                                    <div class="accordion-body">
+                                        <ul class="mb-0 list-group">
+                                            <li class="list-group-item">Led end-to-end design and partial implementation
+                                                of a custom debt collection management platform using Node.js
+                                                (Express.js), MySQL, and hybrid cloud/on-premises architectures.</li>
+                                            <li class="list-group-item">Engineered database schemas to support features
+                                                such as user authentication, automated document generation, payment
+                                                tracking, negotiation portals, calendar scheduling, and round-robin
+                                                debtor assignments.</li>
+                                            <li class="list-group-item">Developed technical proposals, system diagrams,
+                                                cost analyses, and vendor research to support transitioning from manual
+                                                CMS workflows to a scalable, automated solution.</li>
+                                            <li class="list-group-item">Modernized existing Squarespace websites,
+                                                improved UX/UI, and created a migration plan to a modular Express-based
+                                                platform.</li>
+                                            <li class="list-group-item">Provided network administration, including
+                                                Active Directory (ADDS) setup, Group Policy (GP) configuration, and
+                                                general IT support across multiple office systems.</li>
+                                            <li class="list-group-item">Presented multiple architectural solutions and
+                                                collaborated with stakeholders to align platform features with
+                                                operational needs and budget constraints.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Job 2 -->
+                            <div class="accordion-item mb-2">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed d-flex flex-column align-items-start"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#job2">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <span class="h6 mb-0 fw-bold">CSU Monterey Bay</span>
+                                        </div>
+                                        <span class="text-muted small mt-1">Teacher Assistant</span>
+                                    </button>
+                                </h2>
+                                <div id="job2" class="accordion-collapse collapse" data-bs-parent="#workExperience">
+                                    <div class="accordion-body">
+                                        <ul class="mb-0 list-group">
+                                            <li class="list-group-item">Graded student assignments and labs and held
+                                                frequent office hours.</li>
+                                            <li class="list-group-item">Guided students through challenging programming
+                                                assignments, networking tasks, and problem-solving.</li>
+                                            <li class="list-group-item">Taught complex concepts such as socket
+                                                programming, multithreading, Python coding, managing virtual Linux
+                                                instances, essential command-line tools, and virtual networking.</li>
+                                            <li class="list-group-item">Assisted with VirtualBox, Mininet, Python
+                                                (sockets, threading), and networking fundamentals (OSI model)</li>
+                                            <li class="list-group-item">Helped design extra credit assignments (e.g.,
+                                                Wireshark capture analysis of an Nmap X-mas scan) and graded coursework.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Job 3 -->
+                            <div class="accordion-item mb-2">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed d-flex flex-column align-items-start"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#job3">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <span class="h6 mb-0 fw-bold">Penetrate This</span>
+                                        </div>
+                                        <span class="text-muted small mt-1">Chief Security Analyst</span>
+                                    </button>
+                                </h2>
+                                <div id="job3" class="accordion-collapse collapse" data-bs-parent="#workExperience">
+                                    <div class="accordion-body">
+                                        <ul class="mb-0 list-group">
+                                            <li class="list-group-item">Owned and operated a computer repair and
+                                                cybersecurity consultancy, providing IT solutions to residential and
+                                                small business clients.</li>
+                                            <li class="list-group-item">Diagnosed and resolved hardware and software
+                                                issues, ensuring minimal downtime and maximum customer satisfaction.
+                                            </li>
+                                            <li class="list-group-item">Conducted vulnerability assessments and security
+                                                audits for small office environments.</li>
+                                            <li class="list-group-item">Implemented backup strategies and performed
+                                                system recoveries.</li>
+                                            <li class="list-group-item">Provided mobile device management solutions,
+                                                including data retrieval and installation of monitoring applications.
+                                            </li>
+                                            <li class="list-group-item">Built repeat business through word-of-mouth;
+                                                handled projects including digital forensics for a mediator/investigator
+                                                and IT/security solutions for a nonprofit counseling office.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Job 4 -->
+                            <div class="accordion-item mb-2">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed d-flex flex-column align-items-start"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#job4">
+                                        <div class="d-flex w-100 justify-content-between align-items-center">
+                                            <span class="h6 mb-0 fw-bold">Cornerstone Family Counseling Services</span>
+                                        </div>
+                                        <span class="text-muted small mt-1">Administrative Director</span>
+                                    </button>
+                                </h2>
+                                <div id="job4" class="accordion-collapse collapse" data-bs-parent="#workExperience">
+                                    <div class="accordion-body">
+                                        <ul class="mb-0 list-group">
+                                            <li class="list-group-item">Managed office operations and client records
+                                            </li>
+                                            <li class="list-group-item">Utilized data analytics tools for business
+                                                insights</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="col-md-6">
-                            <ul class="list-group">
-                                <li class="list-group-item"><strong>Tools:</strong> Burp Suite, Ghidra, Hashcat, Maltego, Shodan, Wireshark, GDB, Valgrind, Binwalk, Sleuth Kit</li>
-                                <li class="list-group-item"><strong>Platforms:</strong> Linux, Windows Server, Docker, GCP</li>
-                            </ul>
+                    </div>
+
+
+
+                    <div class="resume-section mb-4">
+                        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>California State University, Monterey Bay</strong> -
+                                B.S. in Computer Science (2023)</li>
+                            <li class="list-group-item"><strong>Clovis Community College</strong> - A.S. in Computer
+                                Science (2020)</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-section mb-4">
+                        <h2><i class="fas fa-certificate"></i> Certifications</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>GIAC GFACT</strong> - Expires Sep 2027</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-section mb-4">
+                        <h2><i class="fas fa-code"></i> Skills</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><strong>Programming:</strong> Java, JavaScript, ARM, C,
+                                        C++, Python, HTML, CSS, BASH, SQL, AWK</li>
+                                    <li class="list-group-item"><strong>Cybersecurity:</strong> Reverse Engineering,
+                                        Digital Forensics, Packet Analysis, Log Analysis, Incident Response, Threat
+                                        Intelligence, OSINT</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><strong>Tools:</strong> Burp Suite, Ghidra, Hashcat,
+                                        Maltego, Shodan, Wireshark, GDB, Valgrind, Binwalk, Sleuth Kit</li>
+                                    <li class="list-group-item"><strong>Platforms:</strong> Linux, Windows Server,
+                                        Docker, GCP</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-   
+
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
