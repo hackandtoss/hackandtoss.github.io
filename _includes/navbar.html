@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="{{ '/' | relative_url }}"><span class="text-danger">hackandtoss</span>@<span
+                class="text-success">root~$ </span><span class="blinking-cursor">_</span></a>
+
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="modeToggle">
+                <span class="slider">
+                    <i class="fas fa-sun theme-icon sun-icon"></i>
+                    <i class="fas fa-moon theme-icon moon-icon"></i>
+                </span>
+            </label>
+            <span id="modeText">Enable Dark Mode</span>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link{% if page.nav == 'projects' %} active{% endif %}" href="{{ '/projects.html' | relative_url }}">Projects</a></li>
+                <li class="nav-item"><a class="nav-link{% if page.nav == 'resources' %} active{% endif %}" href="{{ '/resources.html' | relative_url }}">Resources</a></li>
+                <li class="nav-item"><a class="nav-link{% if page.nav == 'resume' %} active{% endif %}" href="{{ '/resume.html' | relative_url }}">Resume</a></li>
+                <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

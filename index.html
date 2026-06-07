@@ -1,127 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: default
+title: hackandtoss - Portfolio
+---
+<div class="container mt-5 text-center">
+    <h1 class="display-1 text-danger">hackandtoss</h1>
+    <p class="dynamic-text display-4">I am a <span id="changing-text"></span></p>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hackandtoss - Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="alternate icon" href="assets/favicon.ico" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand me-auto" href="#"><span class="text-danger">hackandtoss</span>@<span
-                    class="text-success">root~$ </span><span class="blinking-cursor">_</span></a>
-
-            <div class="theme-toggle">
-                <label class="switch">
-                    <input type="checkbox" id="modeToggle">
-                    <span class="slider">
-                        <i class="fas fa-sun theme-icon sun-icon"></i>
-                        <i class="fas fa-moon theme-icon moon-icon"></i>
-                    </span>
-                </label>
-                <span id="modeText">Enable Dark Mode</span>
-            </div>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-                    <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main class="container mt-5">
-        <div class="container mt-5 text-center">
-            <h1 class="display-1 text-danger">hackandtoss</h1>
-            <p class="dynamic-text display-4">I am a <span id="changing-text"></span></p>
-        </div>
-
-        <!-- Main Content: 2x2 Grid Layout -->
-        <div class="container mt-5">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                <!-- Projects Card -->
-                <div class="col">
-                    <div class="card shadow-lg h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-code fa-3x text-primary"></i>
-                            <h3 class="card-title mt-3">Projects</h3>
-                            <p class="card-text">Explore my cybersecurity, data science, and software projects.</p>
-                            <a href="projects.html" class="btn btn-primary">View Projects</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Resources Card -->
-                <div class="col">
-                    <div class="card shadow-lg h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-book fa-3x text-success"></i>
-                            <h3 class="card-title mt-3">Resources</h3>
-                            <p class="card-text">Curated tools, links, and guides for IT & Cybersecurity.</p>
-                            <a href="resources.html" class="btn btn-success">View Resources</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Resume Card -->
-                <div class="col">
-                    <div class="card shadow-lg h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-file-alt fa-3x text-danger"></i>
-                            <h3 class="card-title mt-3">Resume</h3>
-                            <p class="card-text">Check out my resume and professional experience.</p>
-                            <a href="resume.html" class="btn btn-danger">View Resume</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Blog Card -->
-                <div class="col">
-                    <div class="card shadow-lg h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-pen fa-3x text-warning"></i>
-                            <h3 class="card-title mt-3">Blog</h3>
-                            <p class="card-text">Technical write-ups and cybersecurity insights.</p>
-                            <a href="blog.html" class="btn btn-warning">Read Blog</a>
-                        </div>
-                    </div>
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-code fa-3x text-primary"></i>
+                    <h3 class="card-title mt-3">Projects</h3>
+                    <p class="card-text">Explore my cybersecurity, data science, and software projects.</p>
+                    <a href="projects.html" class="btn btn-primary">View Projects</a>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Footer with Contact Info -->
-    <footer class="text-center mt-5 py-4">
-        <section id="contact">
-            <h2><i class="fas fa-envelope"></i> Contact</h2>
-            <p><i class="fas fa-envelope"></i> Email: <a
-                    href="mailto:jobs.purge002@passinbox.com">jobs.purge002@passinbox.com</a></p>
-            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/john-johnson-77b15247"
-                    target="_blank">LinkedIn Profile</a></p>
-            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/hackandtoss" target="_blank">GitHub
-                    Profile</a></p>
-        </section>
-    </footer>
+        <div class="col">
+            <div class="card shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-book fa-3x text-success"></i>
+                    <h3 class="card-title mt-3">Resources</h3>
+                    <p class="card-text">Curated tools, links, and guides for IT & Cybersecurity.</p>
+                    <a href="resources.html" class="btn btn-success">View Resources</a>
+                </div>
+            </div>
+        </div>
 
-    <script src="js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        <div class="col">
+            <div class="card shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-file-alt fa-3x text-danger"></i>
+                    <h3 class="card-title mt-3">Resume</h3>
+                    <p class="card-text">Check out my resume and professional experience.</p>
+                    <a href="resume.html" class="btn btn-danger">View Resume</a>
+                </div>
+            </div>
+        </div>
 
-</html>
+        <div class="col">
+            <div class="card shadow-lg h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-pen fa-3x text-warning"></i>
+                    <h3 class="card-title mt-3">Blog</h3>
+                    <p class="card-text">Technical write-ups and cybersecurity insights.</p>
+                    <a href="blog.html" class="btn btn-warning">Read Blog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,9 +13,51 @@ body {
     color: #ffffff;
 }
 
+.dark-mode a {
+    color: #8cc7ff;
+}
+
 .dark-mode .navbar {
     background-color: #1e1e1e !important;
     border-bottom: 1px solid #2d2d2d;
+}
+
+.dark-mode .card,
+.dark-mode .accordion-item {
+    border-color: #495057;
+}
+
+.dark-mode .accordion-button,
+.dark-mode .accordion-button:not(.collapsed) {
+    background-color: #2b3035;
+    color: #ffffff;
+}
+
+.dark-mode .accordion-button::after {
+    filter: invert(1);
+}
+
+.dark-mode .list-group-item {
+    background-color: #2b3035;
+    color: #ffffff;
+    border-color: #495057;
+}
+
+.dark-mode .text-muted {
+    color: #c3ccd5 !important;
+}
+
+.dark-mode .theme-invert-btn {
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    color: #212529;
+}
+
+.dark-mode .theme-invert-btn:hover,
+.dark-mode .theme-invert-btn:focus {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+    color: #212529;
 }
 
 .blinking-cursor {

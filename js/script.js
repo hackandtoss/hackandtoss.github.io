@@ -1,5 +1,10 @@
 $(document).ready(function () {
     const modeText = $("#modeText");
+    const body = $("body");
+    const navbar = $(".navbar");
+    const cards = $(".card");
+    const accordionItems = $(".accordion-item");
+    const tables = $(".table");
 
     // Check and apply stored theme
     if (localStorage.getItem("theme") === "dark") {
@@ -16,13 +21,11 @@ $(document).ready(function () {
     });
 
     function enableDarkMode() {
-        $("body").addClass("dark-mode");
-        $(".navbar").removeClass("bg-light navbar-light").addClass("bg-dark navbar-dark");
-        $(".card").removeClass("bg-light").addClass("bg-dark text-light");
-        $(".accordion-item").removeClass("bg-light").addClass("bg-dark text-light");
-        $(".list-group-item").addClass("dark-mode");
-        $(".table").addClass("table-dark");
-        $(".btn-dark").removeClass("btn-dark").addClass("btn-light");
+        body.addClass("dark-mode");
+        navbar.removeClass("bg-light navbar-light").addClass("bg-dark navbar-dark");
+        cards.removeClass("bg-light").addClass("bg-dark text-light");
+        accordionItems.removeClass("bg-light").addClass("bg-dark text-light");
+        tables.addClass("table-dark");
         $(".sun-icon").css("opacity", "0");
         $(".moon-icon").css("opacity", "1");
         $(".slider:before").css("transform", "translateX(32px)");
@@ -31,13 +34,11 @@ $(document).ready(function () {
     }
 
     function disableDarkMode() {
-        $("body").removeClass("dark-mode");
-        $(".navbar").removeClass("bg-dark navbar-dark").addClass("bg-light navbar-light");
-        $(".card").removeClass("bg-dark text-light").addClass("bg-light");
-        $(".accordion-item").removeClass("bg-dark text-light").addClass("bg-light");
-        $(".list-group-item").removeClass("dark-mode");
-        $(".table").removeClass("table-dark");
-        $(".btn-light").removeClass("btn-light").addClass("btn-dark");
+        body.removeClass("dark-mode");
+        navbar.removeClass("bg-dark navbar-dark").addClass("bg-light navbar-light");
+        cards.removeClass("bg-dark text-light").addClass("bg-light");
+        accordionItems.removeClass("bg-dark text-light").addClass("bg-light");
+        tables.removeClass("table-dark");
         $(".sun-icon").css("opacity", "1");
         $(".moon-icon").css("opacity", "0");
         $(".slider:before").css("transform", "translateX(0)");
