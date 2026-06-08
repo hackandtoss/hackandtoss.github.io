@@ -189,7 +189,7 @@
       text: "Hardening guide for infrastructure-level cryptographic configurations."
 
 - category: "Programming & Scripting"
-  description: "Useful resources for cybersecurity-focused scripting and automation."
+  description: "Useful resources for cybersecurity-focused scripting, network analysis, and source code auditing."
   links:
     - name: "Nmap Scripting Engine"
       url: "https://nmap.org/nsedoc/"
@@ -206,6 +206,9 @@
     - name: "GraphQL Security Cheat Sheet"
       url: "https://cheatsheetseries.owasp.org/cheatsheets/GraphQL_Security_Cheat_Sheet.html"
       text: "Securing modern relational API request architectures."
+    - name: "Joern"
+      url: "https://joern.io/"
+      text: "Open-source code analysis platform for hunting vulnerabilities using Code Property Graphs."
 
 - category: "Cloud & Infrastructure Security"
   description: "Tools and guidelines for securing cloud-native ecosystems, containers, and orchestration."
