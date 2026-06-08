@@ -6,42 +6,24 @@ nav: projects
 <div class="container mt-5">
     <h1 class="display-4 text-center mb-4">Projects</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for project in site.data.projects %}
         <div class="col">
-            <div class="card h-100 shadow-lg">
+            <div class="card h-100 shadow-lg border-0">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-beer"></i> Mead Tracker</h5>
-                    <p class="card-text">A web application to track mead production, recipes, and fermentation process.</p>
+                    <h5 class="card-title">
+                        <i class="{{ project.icon }}"></i> {{ project.title }}
+                    </h5>
+                    <p class="card-text text-secondary">{{ project.description }}</p>
                 </div>
-                <div class="card-footer text-center">
-                    <a href="mead_tracker.html" class="btn btn-primary">View Project</a>
+                <div class="card-footer bg-transparent border-0 text-center pb-3">
+                    <a href="{{ project.url }}" 
+                       class="btn {{ project.btn_class }}"
+                       {% if project.external %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                        {{ project.btn_text }}
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-lg">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-key"></i> Random Password Generator</h5>
-                    <p class="card-text">A C++ based tool to generate secure random passwords with customizable options.</p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="https://github.com/hackandtoss/CyberSecProjects/tree/f698548e2e93dea56cc1e377162537ef45f48f05/Password%20Generator"
-                        class="btn btn-success" target="_blank" rel="noopener noreferrer">View Project</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100 shadow-lg">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-database"></i> Honeypot Data Analysis</h5>
-                    <p class="card-text">A Kaggle notebook project analyzing honeypot data to identify attack patterns.</p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="https://www.kaggle.com/code/hackandtoss/honeypot-data-insights-into-cyber-threat-patterns"
-                        class="btn btn-warning" target="_blank" rel="noopener noreferrer">View Notebook</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>

@@ -1,0 +1,23 @@
+- title: "Mead Tracker"
+  icon: "fas fa-beer"
+  description: "A web application to track mead production, recipes, and fermentation processes."
+  url: "mead_tracker.html"
+  btn_class: "btn-primary"
+  btn_text: "View Project"
+  external: false
+
+- title: "Random Password Generator"
+  icon: "fas fa-key"
+  description: "A C++ based tool to generate secure random passwords with customizable options."
+  url: "https://github.com/hackandtoss/CyberSecProjects/tree/f698548e2e93dea56cc1e377162537ef45f48f05/Password%20Generator"
+  btn_class: "btn-success"
+  btn_text: "View Project"
+  external: true
+
+- title: "Honeypot Data Analysis"
+  icon: "fas fa-database"
+  description: "A Kaggle notebook project analyzing honeypot data to identify attack patterns."
+  url: "https://www.kaggle.com/code/hackandtoss/honeypot-data-insights-into-cyber-threat-patterns"
+  btn_class: "btn-warning"
+  btn_text: "View Notebook"
+  external: true
