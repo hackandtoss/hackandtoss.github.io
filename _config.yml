@@ -1,3 +1,16 @@
 title: hackandtoss
 description: Personal portfolio and cybersecurity resource hub
 markdown: kramdown
+
+collections:
+  blog:
+    output: true
+    permalink: /blog/:name/
+
+defaults:
+  - scope:
+      path: "_blog"
+      type: blog
+    values:
+      layout: post
+      page_script: /js/blog.js
