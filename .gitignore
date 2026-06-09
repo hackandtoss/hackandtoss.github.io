@@ -5,3 +5,6 @@ _site/
 .local/
 .claude/
 docs/
+research/
+.firecrawl/
+.env
