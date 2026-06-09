@@ -8,17 +8,19 @@
 
                 filterBtns.forEach(function (b) {
                     var cat = b.dataset.filter;
-                    b.classList.remove('active', 'btn-secondary', 'btn-danger', 'btn-primary',
-                        'btn-outline-secondary', 'btn-outline-danger', 'btn-outline-primary');
+                    b.classList.remove('active', 'btn-secondary', 'btn-danger', 'btn-primary', 'btn-info',
+                        'btn-outline-secondary', 'btn-outline-danger', 'btn-outline-primary', 'btn-outline-info');
                     if (cat === 'ctf') b.classList.add('btn-outline-danger');
                     else if (cat === 'tutorial') b.classList.add('btn-outline-primary');
+                    else if (cat === 'research') b.classList.add('btn-outline-info');
                     else b.classList.add('btn-outline-secondary');
                 });
 
-                this.classList.remove('btn-outline-secondary', 'btn-outline-danger', 'btn-outline-primary');
+                this.classList.remove('btn-outline-secondary', 'btn-outline-danger', 'btn-outline-primary', 'btn-outline-info');
                 this.classList.add('active');
                 if (selected === 'ctf') this.classList.add('btn-danger');
                 else if (selected === 'tutorial') this.classList.add('btn-primary');
+                else if (selected === 'research') this.classList.add('btn-info');
                 else this.classList.add('btn-secondary');
 
                 document.querySelectorAll('.blog-card').forEach(function (card) {
