@@ -13,7 +13,7 @@ body {
     color: #ffffff;
 }
 
-.dark-mode a {
+.dark-mode a:not(.btn) {
     color: #8cc7ff;
 }
 
