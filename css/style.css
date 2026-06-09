@@ -7,6 +7,13 @@ body {
     color: #353b42;
 }
 
+/* btn-warning override: Bootstrap 5 defaults to black text; force white to match other buttons */
+.btn-warning {
+    --bs-btn-color: #fff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-color: #fff;
+}
+
 /* Dark Mode Overrides */
 .dark-mode {
     background-color: #353b42;

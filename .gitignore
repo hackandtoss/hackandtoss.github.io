@@ -8,3 +8,7 @@ docs/
 research/
 .firecrawl/
 .env
+Gemfile
+Gemfile.lock
+.bundle/
+.playwright-cli/
